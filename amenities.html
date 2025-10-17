@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amenities | Urban Heights Apartments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: #c0392b;
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .page-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Amenities Navigation */
+        .amenities-nav {
+            background: var(--light);
+            padding: 20px 0;
+            position: sticky;
+            top: 80px;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .amenities-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .amenities-nav ul li {
+            margin: 0 15px;
+        }
+        
+        .amenities-nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .amenities-nav ul li a:hover, .amenities-nav ul li a.active {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* Featured Amenities */
+        .featured-amenities {
+            background: white;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .featured-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .featured-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .featured-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .featured-card:hover .featured-img img {
+            transform: scale(1.1);
+        }
+        
+        .featured-content {
+            padding: 25px;
+        }
+        
+        .featured-content h3 {
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .featured-content h3 i {
+            color: var(--secondary);
+        }
+        
+        /* All Amenities */
+        .all-amenities {
+            background: var(--light);
+        }
+        
+        .amenities-category {
+            margin-bottom: 60px;
+        }
+        
+        .amenities-category h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .amenity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .amenity-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .amenity-item i {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-top: 5px;
+        }
+        
+        /* Services Section */
+        .services {
+            background: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .service-card:hover i, .service-card:hover h3 {
+            color: white;
+        }
+        
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        /* Hours & Access */
+        .hours-access {
+            background: var(--light);
+        }
+        
+        .hours-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .hours-card, .access-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .hours-list {
+            list-style: none;
+        }
+        
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .access-list {
+            list-style: none;
+        }
+        
+        .access-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .access-list li i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .cta h2 {
+            color: white;
+        }
+        
+        .cta h2:after {
+            background: white;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 30px;
+            }
+            
+            nav ul li {
+                margin: 0 0 20px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .amenities-nav ul {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .amenities-nav ul li {
+                margin: 0 10px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Urban<span>Heights</span></a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="amenities.html" class="active">Amenities</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container page-header-content">
+            <h1>Premium Amenities</h1>
+            <p>Experience resort-style living with our extensive collection of luxury amenities designed for your comfort, convenience, and wellness.</p>
+            <a href="#featured" class="btn">Explore Amenities</a>
+        </div>
+    </section>
+
+    <!-- Amenities Navigation -->
+    <section class="amenities-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#featured" class="active">Featured</a></li>
+                <li><a href="#recreation">Recreation</a></li>
+                <li><a href="#wellness">Wellness</a></li>
+                <li><a href="#business">Business</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#hours">Hours & Access</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Featured Amenities -->
+    <section class="featured-amenities" id="featured">
+        <div class="container">
+            <h2>Featured Amenities</h2>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <div class="featured-img">
+                        <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" alt="Rooftop Pool">
+                    </div>
+                    <div class="featured-content">
+                        <h3><i class="fas fa-swimming-pool"></i> Rooftop Pool & Lounge</h3>
+                        <p>Enjoy stunning city views from our seasonal rooftop pool, complete with lounge chairs, cabanas, and a poolside bar.</p>
+                    </div>
+                </div>
+                <div class="featured-card">
+                    <div class="featured-img">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Fitness Center">
+                    </div>
+                    <div class="featured-content">
+                        <h3><i class="fas fa-dumbbell"></i> Fitness Center</h3>
+                        <p>24/7 access to our state-of-the-art fitness center with cardio equipment, free weights, and yoga studio.</p>
+                    </div>
+                </div>
+                <div class="featured-card">
+                    <div class="featured-img">
+                        <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Resident Lounge">
+                    </div>
+                    <div class="featured-content">
+                        <h3><i class="fas fa-couch"></i> Resident Lounge</h3>
+                        <p>Comfortable lounge area with fireplace, large screen TV, and kitchenette for social gatherings and events.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Amenities -->
+    <section class="all-amenities" id="recreation">
+        <div class="container">
+            <h2>All Amenities</h2>
+            
+            <div class="amenities-category">
+                <h3>Recreation & Social</h3>
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <i class="fas fa-swimming-pool"></i>
+                        <div>
+                            <h4>Rooftop Pool</h4>
+                            <p>Seasonal outdoor pool with lounge area and city views</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-fire"></i>
+                        <div>
+                            <h4>Rooftop Fire Pit</h4>
+                            <p>Cozy fire pit seating area for evening gatherings</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-grill"></i>
+                        <div>
+                            <h4>BBQ Grilling Stations</h4>
+                            <p>Multiple grilling areas with outdoor dining spaces</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-gamepad"></i>
+                        <div>
+                            <h4>Game Room</h4>
+                            <p>Billiards, foosball, and arcade games</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-tv"></i>
+                        <div>
+                            <h4>Media Room</h4>
+                            <p>Private theater with surround sound and premium seating</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-chess-board"></i>
+                        <div>
+                            <h4>Entertainment Lounge</h4>
+                            <p>Spacious lounge with gaming consoles and board games</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="amenities-category" id="wellness">
+                <h3>Health & Wellness</h3>
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <i class="fas fa-dumbbell"></i>
+                        <div>
+                            <h4>Fitness Center</h4>
+                            <p>24/7 access with cardio and strength training equipment</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-spa"></i>
+                        <div>
+                            <h4>Yoga & Pilates Studio</h4>
+                            <p>Dedicated studio with mats and wellness equipment</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-bicycle"></i>
+                        <div>
+                            <h4>Spin Studio</h4>
+                            <p>Cycling studio with virtual class options</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-hot-tub"></i>
+                        <div>
+                            <h4>Hot Tub & Sauna</h4>
+                            <p>Relaxing spa area with hot tub and dry sauna</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-running"></i>
+                        <div>
+                            <h4>Jogging Trail</h4>
+                            <p>Scenic running path throughout the property</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-basketball-ball"></i>
+                        <div>
+                            <h4>Sports Court</h4>
+                            <p>Multi-purpose court for basketball and volleyball</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="amenities-category" id="business">
+                <h3>Business & Convenience</h3>
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <h4>Co-Working Space</h4>
+                            <p>Dedicated workspace with high-speed internet</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-print"></i>
+                        <div>
+                            <h4>Business Center</h4>
+                            <p>Computers, printers, and office supplies</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-wifi"></i>
+                        <div>
+                            <h4>High-Speed Internet</h4>
+                            <p>Complimentary Wi-Fi in all common areas</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-concierge-bell"></i>
+                        <div>
+                            <h4>24/7 Concierge</h4>
+                            <p>Professional staff to assist with your needs</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-box"></i>
+                        <div>
+                            <h4>Package Room</h4>
+                            <p>Secure package receiving with refrigerated storage</p>
+                        </div>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-parking"></i>
+                        <div>
+                            <h4>Garage Parking</h4>
+                            <p>Assigned parking spaces with electric vehicle charging</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Resident Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-bell-concierge"></i>
+                    <h3>Concierge Services</h3>
+                    <p>24/7 front desk assistance, dry cleaning, and package handling</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>Move-In Coordination</h3>
+                    <p>Assistance with moving logistics and elevator reservations</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Security</h3>
+                    <p>Controlled access, security cameras, and patrol services</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-paw"></i>
+                    <h3>Pet Services</h3>
+                    <p>Pet spa, grooming station, and walking services available</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-broom"></i>
+                    <h3>Cleaning Services</h3>
+                    <p>Optional weekly or monthly apartment cleaning</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-car"></i>
+                    <h3>Valet & Car Services</h3>
+                    <p>Complimentary car service for local destinations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours & Access -->
+    <section class="hours-access" id="hours">
+        <div class="container">
+            <h2>Hours & Access</h2>
+            <div class="hours-container">
+                <div class="hours-card">
+                    <h3>Amenity Hours</h3>
+                    <ul class="hours-list">
+                        <li>
+                            <span>Fitness Center</span>
+                            <span>24/7</span>
+                        </li>
+                        <li>
+                            <span>Pool</span>
+                            <span>9am - 10pm (Seasonal)</span>
+                        </li>
+                        <li>
+                            <span>Business Center</span>
+                            <span>6am - 11pm</span>
+                        </li>
+                        <li>
+                            <span>Resident Lounge</span>
+                            <span>8am - Midnight</span>
+                        </li>
+                        <li>
+                            <span>Game Room</span>
+                            <span>10am - 11pm</span>
+                        </li>
+                        <li>
+                            <span>Concierge</span>
+                            <span>24/7</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="access-card">
+                    <h3>Access Information</h3>
+                    <ul class="access-list">
+                        <li>
+                            <i class="fas fa-key"></i>
+                            <div>
+                                <h4>Key Fob Access</h4>
+                                <p>All amenities require key fob access for resident security</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-user-friends"></i>
+                            <div>
+                                <h4>Guest Policy</h4>
+                                <p>Residents may bring up to 2 guests to amenities</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
+                                <h4>Reservations</h4>
+                                <p>Private dining room and media room require reservations</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <div>
+                                <h4>Rules & Guidelines</h4>
+                                <p>Please review amenity rules for safety and enjoyment</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Experience Our Amenities</h2>
+            <p>Schedule a tour today to see our premium amenities in person and discover the Urban Heights difference.</p>
+            <a href="contact.html" class="btn btn-accent">Schedule a Tour</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Urban Heights</h3>
+                    <p>Luxury apartment living in the heart of the city. Experience modern amenities and exceptional service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="amenities.html">Amenities</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="floorplans.html">Floor Plans</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Amenities</h3>
+                    <ul>
+                        <li><a href="#recreation">Recreation</a></li>
+                        <li><a href="#wellness">Wellness</a></li>
+                        <li><a href="#business">Business</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#hours">Hours & Access</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, City 10001</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@urbanheights.com</li>
+                        <li><i class="fas fa-clock"></i> Leasing Office: Mon-Fri 9am-6pm</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Urban Heights Apartments. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const nav = document.querySelector('nav');
+        
+        mobileMenu.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+        
+        // Amenities Navigation
+        const amenitiesNavLinks = document.querySelectorAll('.amenities-nav a');
+        amenitiesNavLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                amenitiesNavLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Scroll to section
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 140,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.scrollY + 150;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    amenitiesNavLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

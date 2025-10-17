@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Features | Urban Heights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: #c0392b;
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .page-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Features Overview */
+        .features-overview {
+            background: var(--light);
+        }
+        
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .overview-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .overview-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .overview-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        /* Interior Features */
+        .interior-features {
+            padding-bottom: 40px;
+        }
+        
+        .feature-category {
+            margin-bottom: 60px;
+        }
+        
+        .feature-category h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-item i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+        
+        /* Building Amenities */
+        .building-amenities {
+            background: var(--light);
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .amenity-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .amenity-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .amenity-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .amenity-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .amenity-card:hover .amenity-img img {
+            transform: scale(1.1);
+        }
+        
+        .amenity-content {
+            padding: 25px;
+        }
+        
+        .amenity-content h3 {
+            color: var(--primary);
+        }
+        
+        /* Floor Plans */
+        .floor-plans {
+            text-align: center;
+        }
+        
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .plan-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .plan-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .plan-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .plan-content {
+            padding: 25px;
+        }
+        
+        .plan-specs {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+        }
+        
+        .plan-spec {
+            text-align: center;
+        }
+        
+        .plan-spec i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .cta h2 {
+            color: white;
+        }
+        
+        .cta h2:after {
+            background: white;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 30px;
+            }
+            
+            nav ul li {
+                margin: 0 0 20px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Urban<span>Heights</span></a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html" class="active">Features</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container page-header-content">
+            <h1>Apartment Features</h1>
+            <p>Discover the premium amenities and luxurious details that make Urban Heights the perfect place to call home.</p>
+            <a href="#floor-plans" class="btn">View Floor Plans</a>
+        </div>
+    </section>
+
+    <!-- Features Overview -->
+    <section class="features-overview">
+        <div class="container">
+            <h2>Premium Living Experience</h2>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Modern Interiors</h3>
+                    <p>Thoughtfully designed living spaces with high-end finishes and contemporary style.</p>
+                </div>
+                <div class="overview-card">
+                    <i class="fas fa-concierge-bell"></i>
+                    <h3>Luxury Amenities</h3>
+                    <p>Exceptional building amenities designed for comfort, convenience, and wellness.</p>
+                </div>
+                <div class="overview-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Prime Location</h3>
+                    <p>Located in the heart of the city with easy access to dining, shopping, and entertainment.</p>
+                </div>
+                <div class="overview-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Environment</h3>
+                    <p>24/7 security and controlled access for your peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interior Features -->
+    <section class="interior-features">
+        <div class="container">
+            <h2>Interior Features</h2>
+            
+            <div class="feature-category">
+                <h3>Kitchen</h3>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Stainless Steel Appliances</h4>
+                            <p>Energy-efficient refrigerator, dishwasher, microwave, and gas range</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Quartz Countertops</h4>
+                            <p>Durable and elegant countertops with ample workspace</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Custom Cabinetry</h4>
+                            <p>Soft-close drawers and cabinets with modern hardware</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Under-Cabinet Lighting</h4>
+                            <p>LED lighting for optimal visibility while cooking</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Farmhouse Sink</h4>
+                            <p>Deep, single-basin sink for easy cleaning</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Backsplash</h4>
+                            <p>Stylish subway tile backsplash in a neutral tone</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-category">
+                <h3>Bathroom</h3>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Rainfall Showerhead</h4>
+                            <p>Luxurious rainfall shower system with handheld option</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Soaking Tub</h4>
+                            <p>Deep soaking tub in select units for ultimate relaxation</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Floating Vanity</h4>
+                            <p>Modern floating vanity with quartz countertop</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Heated Floors</h4>
+                            <p>Radiant heated flooring for comfort during colder months</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Frameless Glass Enclosure</h4>
+                            <p>Sleek, frameless glass shower enclosure</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Premium Fixtures</h4>
+                            <p>Brushed nickel or matte black fixtures throughout</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-category">
+                <h3>Living Spaces</h3>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Hardwood Flooring</h4>
+                            <p>Engineered hardwood flooring throughout living areas</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Smart Home Technology</h4>
+                            <p>Integrated smart home system for lighting, temperature, and security</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Floor-to-Ceiling Windows</h4>
+                            <p>Expansive windows with stunning city views</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Private Balconies</h4>
+                            <p>Spacious balconies or patios in select units</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Custom Closet Systems</h4>
+                            <p>Walk-in closets with custom organization systems</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Energy-Efficient HVAC</h4>
+                            <p>Zoned heating and cooling for optimal comfort and efficiency</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Building Amenities -->
+    <section class="building-amenities">
+        <div class="container">
+            <h2>Building Amenities</h2>
+            <div class="amenities-grid">
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" alt="Rooftop Pool">
+                    </div>
+                    <div class="amenity-content">
+                        <h3>Rooftop Pool & Lounge</h3>
+                        <p>Seasonal rooftop pool with stunning city views, lounge chairs, and cabanas.</p>
+                    </div>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Fitness Center">
+                    </div>
+                    <div class="amenity-content">
+                        <h3>Fitness Center</h3>
+                        <p>24/7 access to a state-of-the-art fitness center with cardio and strength equipment.</p>
+                    </div>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Co-Working Space">
+                    </div>
+                    <div class="amenity-content">
+                        <h3>Co-Working Lounge</h3>
+                        <p>Dedicated workspace with high-speed internet, printing services, and meeting rooms.</p>
+                    </div>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1616587226153-4c11b3b0b56c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pet Spa">
+                    </div>
+                    <div class="amenity-content">
+                        <h3>Pet Spa & Park</h3>
+                        <p>Pet-friendly community with grooming station, dog park, and walking services.</p>
+                    </div>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Package Room">
+                    </div>
+                    <div class="amenity-content">
+                        <h3>Package Room & Concierge</h3>
+                        <p>24-hour concierge service and secure package receiving with refrigerated storage.</p>
+                    </div>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Resident Lounge">
+                    </div>
+                    <div class="amenity-content">
+                        <h3>Resident Lounge</h3>
+                        <p>Comfortable lounge area with fireplace, TV, and kitchenette for social gatherings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floor Plans -->
+    <section class="floor-plans" id="floor-plans">
+        <div class="container">
+            <h2>Floor Plans</h2>
+            <p class="text-center" style="max-width: 700px; margin: 0 auto 3rem;">Choose from a variety of thoughtfully designed floor plans to suit your lifestyle.</p>
+            
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-img">
+                        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Studio Apartment">
+                    </div>
+                    <div class="plan-content">
+                        <h3>Studio</h3>
+                        <p>Efficient and modern living space perfect for individuals.</p>
+                        <div class="plan-specs">
+                            <div class="plan-spec">
+                                <i class="fas fa-ruler-combined"></i>
+                                <p>450-550 sq ft</p>
+                            </div>
+                            <div class="plan-spec">
+                                <i class="fas fa-bed"></i>
+                                <p>1 Bed</p>
+                            </div>
+                            <div class="plan-spec">
+                                <i class="fas fa-bath"></i>
+                                <p>1 Bath</p>
+                            </div>
+                        </div>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-img">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1558&q=80" alt="One Bedroom Apartment">
+                    </div>
+                    <div class="plan-content">
+                        <h3>One Bedroom</h3>
+                        <p>Spacious layout with separate living and sleeping areas.</p>
+                        <div class="plan-specs">
+                            <div class="plan-spec">
+                                <i class="fas fa-ruler-combined"></i>
+                                <p>650-800 sq ft</p>
+                            </div>
+                            <div class="plan-spec">
+                                <i class="fas fa-bed"></i>
+                                <p>1 Bed</p>
+                            </div>
+                            <div class="plan-spec">
+                                <i class="fas fa-bath"></i>
+                                <p>1 Bath</p>
+                            </div>
+                        </div>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-img">
+                        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Two Bedroom Apartment">
+                    </div>
+                    <div class="plan-content">
+                        <h3>Two Bedroom</h3>
+                        <p>Ideal for roommates or small families with extra space.</p>
+                        <div class="plan-specs">
+                            <div class="plan-spec">
+                                <i class="fas fa-ruler-combined"></i>
+                                <p>950-1200 sq ft</p>
+                            </div>
+                            <div class="plan-spec">
+                                <i class="fas fa-bed"></i>
+                                <p>2 Beds</p>
+                            </div>
+                            <div class="plan-spec">
+                                <i class="fas fa-bath"></i>
+                                <p>2 Baths</p>
+                            </div>
+                        </div>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Experience Urban Heights?</h2>
+            <p>Schedule a tour today to see our premium apartments and amenities in person. Our leasing team is ready to help you find your perfect home.</p>
+            <a href="contact.html" class="btn btn-accent">Schedule a Tour</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Urban Heights</h3>
+                    <p>Luxury apartment living in the heart of the city. Experience modern amenities and exceptional service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="floorplans.html">Floor Plans</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Apartments</h3>
+                    <ul>
+                        <li><a href="#">Studio</a></li>
+                        <li><a href="#">1 Bedroom</a></li>
+                        <li><a href="#">2 Bedroom</a></li>
+                        <li><a href="#">3 Bedroom</a></li>
+                        <li><a href="#">Penthouse</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, City 10001</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@urbanheights.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Urban Heights Apartments. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const nav = document.querySelector('nav');
+        
+        mobileMenu.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
